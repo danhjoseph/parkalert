@@ -91,10 +91,11 @@ export default function Cards({ numberOfPosts }) {
       </Row>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Stay Alert</Modal.Title>
+          <Modal.Title>Save a park to your quick view list.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Save this location to your profile to receive alerts?
+          <p>Save this location to your profile to receive alerts?</p>
+          <p>You must be logged in to save a park.</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
