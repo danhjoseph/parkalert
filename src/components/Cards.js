@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button } from "react-bootstrap";
+import parkCodes from "../db/parkcodes";
 
 export default function Cards({ numberOfPosts }) {
   const [showModal, setShow] = useState(false);
@@ -32,8 +33,12 @@ export default function Cards({ numberOfPosts }) {
 
   const getPostsData = async () => {
     try {
+      //for (let key in parkCodes) {";
+      // key = deva;
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts?_limit=${numberOfPosts}`
+        // `https://jsonplaceholder.typicode.com/posts?_limit=${numberOfPosts}`
+        //`https://developer.nps.gov/api/v1/alerts?parkCode=${key}&api_key=y02YQZIE073ut1YQNZMW5vYHnHA4oxLRoG99EIV9`
+        `http://127.0.0.1:8000/${numberOfPosts}`
       );
       const data = await response.json();
       setPosts(data);
@@ -43,16 +48,20 @@ export default function Cards({ numberOfPosts }) {
   };
 
   const getColumnsForRow = () => {
+    //console.log(posts);
     let items = posts.map((post, index) => {
-      // console.log(post);
+      console.log("test");
+      console.log(post);
       return (
         <>
           <Col>
             <Card key={post.id}>
               <Card.Body class="text-center">
-                <Card.Title>{parse(post.title)}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">TEST</Card.Subtitle>
-                <Card.Text>{parse(post.body)}</Card.Text>
+                <Card.Title>{parkCodes[parse(post.parkCode)]}</Card.Title>
+                <Card.Subtitle className="mb-2">
+                  {parse(post.title)}
+                </Card.Subtitle>
+                <Card.Text>{parse(post.description)}</Card.Text>
                 <Card.Link>
                   <Link onClick={handleShow}>
                     <IconButton>
@@ -61,7 +70,7 @@ export default function Cards({ numberOfPosts }) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `alerts/${post.id}`,
+                      pathname: `alerts/${post.parkCode}`,
                     }}
                   >
                     <IconButton>
@@ -80,7 +89,7 @@ export default function Cards({ numberOfPosts }) {
 
   useEffect(() => {
     getPostsData();
-  });
+  }, []);
 
   // console.log(posts);
 

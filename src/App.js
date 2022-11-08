@@ -72,7 +72,7 @@ function App() {
                   ></NotificationImportantIcon>
                   to see Alerts
                 </h1>
-                <Cards numberOfPosts={8} />
+                <Cards numberOfPosts={10} /> 
                 <Footer />
               </>
             }

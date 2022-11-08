@@ -59,7 +59,7 @@ function Myparks() {
 
   useEffect(() => {
     getAlertData();
-  });
+  }, []);
 
   return (
     <Container>
