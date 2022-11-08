@@ -67,6 +67,10 @@ let parkCodes = {
   fobu: "Fort Bowie",
   chsc: "Chesapeake and Ohio Canal",
   labe: "Lake Berryessa",
+  pore: "Portsmouth",
+  cuis: "Cumberland Island",
+  fomr: "Fort Matanzas",
+  
 
 };
 
