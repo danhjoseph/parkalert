@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 
-/.DS_Store
-/__pycache__
-/venv
+microservice/.DS_Store
+microservice/__pycache__
+microservice/venv
+
