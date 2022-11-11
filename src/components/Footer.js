@@ -4,6 +4,10 @@ import { Navbar, Container, NavbarBrand } from "react-bootstrap";
 import ForumIcon from "@mui/icons-material/Forum";
 import IconButton from "@mui/material/IconButton";
 
+/**
+ *
+ * @returns Footer component
+ */
 function Footer() {
   const iconStyle = {
     color: "black",

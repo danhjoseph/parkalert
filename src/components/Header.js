@@ -7,6 +7,9 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SettingsIcon from "@mui/icons-material/Settings";
 
+/**
+ * @returns Header component
+ */
 function Header({ backButton }) {
   const navigate = useNavigate();
   const headerStyle = {

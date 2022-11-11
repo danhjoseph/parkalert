@@ -70,8 +70,20 @@ let parkCodes = {
   pore: "Portsmouth",
   cuis: "Cumberland Island",
   fomr: "Fort Matanzas",
-  
-
+  stea: "Steamtown",
+  slbe: "Sleeping Bear Dunes",
+  fofr: "Fort Frederica",
+  piro: "Pictured Rock",
+  jela: "Jean Lafitte",
+  kimo: "Kings Mountain",
+  fofa: "Fort Foote",
+  fofu: "Fort Funston",
+  fofl: "Fort Laramie",
+  cowp: "Cowpens",
+  peco: "Pea Ridge",
+  knri: "Knife River",
+  elma: "El Malpais",
+  cech: "Chesapeake",
 };
 
 export default parkCodes;

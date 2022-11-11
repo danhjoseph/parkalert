@@ -8,6 +8,9 @@ import { Modal, Button } from "react-bootstrap";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { IconButton } from "@mui/material";
 
+/**
+ * @returns Card component
+ */
 function Myparks() {
   // const { id } = useParams();
   const parks = 4;

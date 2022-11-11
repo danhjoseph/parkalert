@@ -12,6 +12,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button } from "react-bootstrap";
 import parkCodes from "../db/parkcodes";
 
+/**
+ * @returns Card component
+ */
 export default function Cards({ numberOfPosts }) {
   const [showModal, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -33,13 +36,7 @@ export default function Cards({ numberOfPosts }) {
 
   const getPostsData = async () => {
     try {
-      //for (let key in parkCodes) {";
-      // key = deva;
-      const response = await fetch(
-        // `https://jsonplaceholder.typicode.com/posts?_limit=${numberOfPosts}`
-        //`https://developer.nps.gov/api/v1/alerts?parkCode=${key}&api_key=y02YQZIE073ut1YQNZMW5vYHnHA4oxLRoG99EIV9`
-        `http://127.0.0.1:8000/${numberOfPosts}`
-      );
+      const response = await fetch(`http://127.0.0.1:8000/${numberOfPosts}`);
       const data = await response.json();
       setPosts(data);
     } catch (err) {
@@ -48,17 +45,21 @@ export default function Cards({ numberOfPosts }) {
   };
 
   const getColumnsForRow = () => {
-    //console.log(posts);
+    console.log(posts);
     let items = posts.map((post, index) => {
-      console.log("test");
-      console.log(post);
       return (
         <>
           <Col>
             <Card key={post.id}>
               <Card.Body class="text-center">
                 <Card.Title>{parkCodes[parse(post.parkCode)]}</Card.Title>
-                <Card.Subtitle className="mb-2">
+                <Card.Subtitle className="mb-2 text-warning">
+                  {parse(post.category)}
+                </Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-primary">
+                  {parse(post.lastIndexedDate)}
+                </Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-danger">
                   {parse(post.title)}
                 </Card.Subtitle>
                 <Card.Text>{parse(post.description)}</Card.Text>
@@ -90,8 +91,6 @@ export default function Cards({ numberOfPosts }) {
   useEffect(() => {
     getPostsData();
   }, []);
-
-  // console.log(posts);
 
   return (
     <Container>
