@@ -28,7 +28,8 @@ function Settings() {
     <>
       <div className="container-sm">
         <div class="wrapper bg-white mt-sm-5">
-          <h4 class="pb-4 border-bottom text-center">Account Settings</h4>
+          <h4 class="pb-4 text-center">Create an Account to Save Parks and View Later</h4>
+          <h3 class="pb-4 border-bottom text-center">Account Settings</h3>
           <div class="py-2">
             <div class="row py-2">
               <div class="col-md-6">

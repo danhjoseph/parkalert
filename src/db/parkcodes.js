@@ -92,6 +92,9 @@ let parkCodes = {
   lyjo: "Lyndon B. Johnson",
   cana: "Cane River Creole",
   vall: "Valley Forge",
+  waba: "Washita Battlefield",
+  cavo: "Capulin Volcano National Monument",
+  moja: "Wild Horse Canyon & Black Canyon"
 };
 
 export default parkCodes;
