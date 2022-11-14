@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
+import IconButton from "@mui/material/IconButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           <Route
             exact
-            path="/myparks"
+            path="/myparks/:id"
             element={
               <>
                 <Header backButton="/" />
@@ -64,15 +65,25 @@ function App() {
             element={
               <>
                 <Header />
-                <h1 class="text-center">
-                  Click <AddLocationIcon style={addIconStyle}></AddLocationIcon>
-                  to Save a Park or{" "}
-                  <NotificationImportantIcon
-                    style={alertIconStyle}
-                  ></NotificationImportantIcon>
-                  to see Alerts
-                </h1>
-                <Cards numberOfPosts={10} /> 
+                <h1 className="text-center">National Park Alerts</h1>
+                <h2 className="text-center">
+                  Current as of {new Date().toDateString()}{" "}
+                  {new Date().toLocaleTimeString()}
+                </h2>
+                <h3 class="text-center">
+                  Click on the
+                  <IconButton>
+                    <AddLocationIcon style={addIconStyle}></AddLocationIcon>
+                  </IconButton>
+                  for Park Info or
+                  <IconButton>
+                    <NotificationImportantIcon
+                      style={alertIconStyle}
+                    ></NotificationImportantIcon>
+                  </IconButton>
+                  to see Active Park Alerts
+                </h3>
+                <Cards numberOfPosts={12} />
                 <Footer />
               </>
             }

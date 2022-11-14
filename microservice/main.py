@@ -43,3 +43,13 @@ async def alerts(parkCode):
     data = response.json()
     package = data['data']
     return package
+
+
+@app.get("/address/{parkCode}")
+async def address(parkCode):
+    dynamic = "https://developer.nps.gov/api/v1/parks?parkCode=" + \
+        parkCode + "&api_key=ZJvoWwN2zapHRpAyW8GdbtzylT3WOdt8eR9FXMKB"
+    response = requests.get(dynamic)
+    data = response.json()
+    package = data['data']
+    return package

@@ -5,15 +5,12 @@ import { useParams } from "react-router-dom";
 import parse from "html-react-parser";
 import Container from "react-bootstrap/Container";
 import { Modal, Button } from "react-bootstrap";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { IconButton } from "@mui/material";
 
 /**
  * @returns Card component
  */
 function Myparks() {
-  // const { id } = useParams();
-  const parks = 4;
+  const { id } = useParams();
   const [posts, setPosts] = useState([]);
   const [showModal, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -25,11 +22,9 @@ function Myparks() {
     margin: "5px",
   };
 
-  const getAlertData = async () => {
+  const getAddressData = async () => {
     try {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts?_limit=${parks}`
-      );
+      const response = await fetch(`http://127.0.0.1:8000/address/${id}`);
       const data = await response.json();
       setPosts(data);
     } catch (err) {
@@ -39,19 +34,21 @@ function Myparks() {
 
   const getAlertCard = () => {
     let items = posts.map((post, index) => {
+      console.log(post);
       return (
         <>
           <Card key={post.id}>
             <Card.Body class="text-center">
-              <Card.Title>{parse(post.title)}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">TEST</Card.Subtitle>
-              <Card.Text>{parse(post.body)}</Card.Text>
-              <IconButton>
-                <DeleteForeverIcon
-                  style={alertIconStyle}
-                  onClick={handleShow}
-                />
-              </IconButton>
+              <Card.Title>{parse(post.fullName)}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                {parse(post.url)}
+              </Card.Subtitle>
+              <Card.Subtitle className="mb-2 text-muted">
+                {parse(post.latLong)}
+              </Card.Subtitle>
+              <Card.Text>{parse(post.description)}</Card.Text>
+              <Card.Text>{parse(post.directionsInfo)}</Card.Text>
+              <Card.Text>{parse(post.weatherInfo)}</Card.Text>
             </Card.Body>
           </Card>
         </>
@@ -60,29 +57,36 @@ function Myparks() {
     return items;
   };
 
+  const getModal = () => {
+    return (
+      <>
+        <Modal show={showModal} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Stay Alert</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Are you sure you want to delete this park?</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="danger" onClick={handleClose}>
+              Delete
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  };
+
   useEffect(() => {
-    getAlertData();
+    getAddressData();
   }, []);
 
   return (
     <Container>
-      {getAlertCard()}
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Stay Alert</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Are you sure you want to delete this park?</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="danger" onClick={handleClose}>
-            Delete
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {getAlertCard()} {getModal()}
     </Container>
   );
 }

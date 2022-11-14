@@ -1,4 +1,4 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button } from "react-bootstrap";
@@ -7,6 +7,22 @@ function Settings() {
   const [showModal, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const getModal = () => {
+    return (
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Stay Alert</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Saved Changes to Your Profile!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  };
 
   return (
     <>
@@ -61,17 +77,7 @@ function Settings() {
           </div>
         </div>
       </div>
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Stay Alert</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Saved Changes to Your Profile!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {getModal()}
     </>
   );
 }

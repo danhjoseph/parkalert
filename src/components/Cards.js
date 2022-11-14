@@ -64,7 +64,7 @@ export default function Cards({ numberOfPosts }) {
                 </Card.Subtitle>
                 <Card.Text>{parse(post.description)}</Card.Text>
                 <Card.Link>
-                  <Link onClick={handleShow}>
+                  <Link to={{ pathname: `myparks/${post.parkCode}` }}>
                     <IconButton>
                       <AddLocationIcon style={addIconStyle} />
                     </IconButton>
@@ -88,6 +88,24 @@ export default function Cards({ numberOfPosts }) {
     return items;
   };
 
+  const getModal = () => {
+    return (
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Save Park?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Would you like to save this park to your list?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="success" onClick={handleClose}>
+            Save
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  };
   useEffect(() => {
     getPostsData();
   }, []);
@@ -97,23 +115,7 @@ export default function Cards({ numberOfPosts }) {
       <Row xs={1} md={columnsPerRow}>
         {getColumnsForRow()}
       </Row>
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Save a park to your quick view list.</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Save this location to your profile to receive alerts?</p>
-          <p>You must be logged in to save a park.</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="success" onClick={handleClose}>
-            Save
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {getModal()}
     </Container>
   );
 }

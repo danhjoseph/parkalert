@@ -84,6 +84,14 @@ let parkCodes = {
   knri: "Knife River",
   elma: "El Malpais",
   cech: "Chesapeake",
+  grpo: "Great Plains",
+  rich: "Richmond",
+  edis: "Edison",
+  buff: "Buffalo",
+  pagr: "Palo Alto Battlefield",
+  lyjo: "Lyndon B. Johnson",
+  cana: "Cane River Creole",
+  vall: "Valley Forge",
 };
 
 export default parkCodes;

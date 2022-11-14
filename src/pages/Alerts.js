@@ -31,8 +31,7 @@ function Alerts() {
         <>
           <Card key={post.id}>
             <Card.Body class="text-center">
-              <Card.Title>{parkCodes[parse(post.parkCode)]}</Card.Title>
-              <Card.Subtitle className="mb-2 text-warning">
+              <Card.Subtitle className="mb-2 text-warning pt-2">
                 {parse(post.category)}
               </Card.Subtitle>
               <Card.Subtitle className="mb-2 text-primary">
@@ -54,7 +53,16 @@ function Alerts() {
     getAlertData();
   }, []);
 
-  return <Container>{getAlertCard()}</Container>;
+  return (
+    <Container>
+      <h1 class="text-center">Active Alerts for {parkCodes[parse(id)]}</h1>
+      <h2 class="text-center">
+        Current as of {new Date().toDateString()}{" "}
+        {new Date().toLocaleTimeString()}
+      </h2>
+      {getAlertCard()}
+    </Container>
+  );
 }
 
 export default Alerts;
